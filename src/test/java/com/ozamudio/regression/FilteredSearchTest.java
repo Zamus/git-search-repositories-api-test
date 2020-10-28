@@ -1,10 +1,13 @@
 package com.ozamudio.regression;
 
+import com.google.common.base.CaseFormat;
 import com.ozamudio.BaseTest;
 import com.ozamudio.Qualifiers;
 import com.ozamudio.RepositoryKeywords;
 import com.ozamudio.RepositoryLanguages;
 import io.restassured.http.ContentType;
+import jdk.jfr.internal.Repository;
+import org.apache.commons.lang3.text.WordUtils;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
@@ -16,9 +19,11 @@ import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.in;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
 
 public class FilteredSearchTest extends BaseTest {
 
@@ -41,11 +46,10 @@ public class FilteredSearchTest extends BaseTest {
     }
 
     @Test
-    public void testBasePathWithTwoLanguagesYieldsResults() {
-        System.out.println(searchUrl + getQueryParamBy(Qualifiers.language, RepositoryLanguages.JAVA) + "+" + getQueryParamBy(Qualifiers.language, RepositoryLanguages.JAVASCRIPT));
+    public void testBasePathExcludingOneLanguageYieldsResultsForAllButThatLanguage() {
         given().
             when().
-                get(searchUrl + getQueryParamBy(Qualifiers.language, RepositoryLanguages.JAVA.toString()) + "+" + getQueryParamBy(Qualifiers.language, RepositoryLanguages.JAVASCRIPT.toString())).
+                get(searchUrl + RepositoryKeywords.CATS + "-" + getQueryParamBy(Qualifiers.language, RepositoryLanguages.ASSEMBLY)).
             then().
                 assertThat().
                     statusCode(200).
@@ -56,14 +60,32 @@ public class FilteredSearchTest extends BaseTest {
                 and().
                     body("items.size()", greaterThanOrEqualTo(1)).
                 and().
-                    body("items.language", everyItem(in(Arrays.asList(RepositoryLanguages.JAVA.toString(), RepositoryLanguages.JAVASCRIPT.toString()))));
+                    body("items.language", everyItem(not(equalToIgnoringCase(RepositoryLanguages.ASSEMBLY.toString()))));
+    }
+
+    @Test
+    public void testBasePathWithTwoLanguagesYieldsResults() {
+        given().
+            when().
+                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.language, RepositoryLanguages.JAVA) + "," + RepositoryLanguages.ASSEMBLY).
+            then().
+                assertThat().
+                    statusCode(200).
+                and().
+                    contentType(ContentType.JSON).
+                and().
+                    body("total_count", greaterThanOrEqualTo(1)).
+                and().
+                    body("items.size()", greaterThanOrEqualTo(1)).
+                and().
+                    body("items.language", everyItem(is(in(Arrays.asList(RepositoryLanguages.JAVA.toString(), RepositoryLanguages.JAVASCRIPT.toString(), null)))));
     }
 
     @Test
     public void testBasePathWithOneLanguageAndSinceCreatedDateYieldsResults() {
         given().
             when().
-                get(searchUrl + getQueryParamBy(Qualifiers.language, RepositoryLanguages.ASSEMBLY) + "+" + getQueryParamBy(Qualifiers.created, ">"+date1992)).
+                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.language, RepositoryLanguages.ASSEMBLY) + "+" + getQueryParamBy(Qualifiers.created, ">"+date1992)).
             then().
                 assertThat().
                     statusCode(200).

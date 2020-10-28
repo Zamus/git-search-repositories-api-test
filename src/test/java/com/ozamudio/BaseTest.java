@@ -20,7 +20,7 @@ public class BaseTest {
     }
 
     protected String getQueryParamBy(Qualifiers qualifier, Object argument) {
-        return qualifier+":"+argument.toString();
+        return qualifier.toString()+":"+argument.toString();
     }
 
     /**
