@@ -18,7 +18,7 @@ public class UserSearchTest extends BaseTest {
     public void testBasePathWithUserPublicRepos() {
         given().
             when().
-                get(searchUrl + getQueryParamBy(Qualifiers.user, RepositoryOwners.OZAMUDIOTESTOWNER)).
+                get(searchUrl + getQueryParamBy(Qualifiers.USER, RepositoryOwners.OZAMUDIOTESTOWNER)).
             then().
                 assertThat().
                     statusCode(200).
@@ -38,7 +38,7 @@ public class UserSearchTest extends BaseTest {
     public void testBasePathWithSpecificUserPublicRepo() {
         given().
             when().
-                get(searchUrl + RepositoryNames.TESTREPO1 + "+" + getQueryParamBy(Qualifiers.user, RepositoryOwners.OZAMUDIOTESTOWNER)).
+                get(searchUrl + RepositoryNames.TESTREPO1 + "+" + getQueryParamBy(Qualifiers.USER, RepositoryOwners.OZAMUDIOTESTOWNER)).
             then().
                 assertThat().
                     statusCode(200).
@@ -57,7 +57,7 @@ public class UserSearchTest extends BaseTest {
         given().
             header("Authorization", authToken).
             when().
-                get(searchUrl+getQueryParamBy(Qualifiers.user, RepositoryOwners.OZAMUDIOTESTOWNER)).
+                get(searchUrl+getQueryParamBy(Qualifiers.USER, RepositoryOwners.OZAMUDIOTESTOWNER)).
             then().
                 assertThat().
                     statusCode(200).
@@ -75,7 +75,7 @@ public class UserSearchTest extends BaseTest {
     public void testBasePathWithUserInexistentRepo() {
         given().
             when().
-                get(searchUrl + RepositoryKeywords.WORKDAY + "+" + getQueryParamBy(Qualifiers.user, RepositoryOwners.OZAMUDIOTESTOWNER)).
+                get(searchUrl + RepositoryKeywords.WORKDAY + "+" + getQueryParamBy(Qualifiers.USER, RepositoryOwners.OZAMUDIOTESTOWNER)).
             then().
                 assertThat().
                     statusCode(200).

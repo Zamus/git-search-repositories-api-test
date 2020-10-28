@@ -19,7 +19,7 @@ public class OrgSearchTest extends BaseTest {
     public void testBasePathWithOrgPublicRepos() {
         given().
             when().
-                get(searchUrl + getQueryParamBy(Qualifiers.org, RepositoryOrganizations.WORKDAY)).
+                get(searchUrl + getQueryParamBy(Qualifiers.ORG, RepositoryOrganizations.WORKDAY)).
             then().
                 assertThat().
                     statusCode(200).
@@ -36,7 +36,7 @@ public class OrgSearchTest extends BaseTest {
         given().
             header("Authorization", authToken).
             when().
-                get(searchUrl + getQueryParamBy(Qualifiers.org, RepositoryOrganizations.OZAMUDIOTESTORGANIZATION)).
+                get(searchUrl + getQueryParamBy(Qualifiers.ORG, RepositoryOrganizations.OZAMUDIOTESTORGANIZATION)).
             then().
                 assertThat().
                     statusCode(200).
@@ -55,7 +55,7 @@ public class OrgSearchTest extends BaseTest {
         given().
             header("Authorization", authToken).
             when().
-                get(searchUrl + RepositoryKeywords.WORKDAY + "+" + getQueryParamBy(Qualifiers.org, RepositoryOrganizations.OZAMUDIOTESTORGANIZATION)).
+                get(searchUrl + RepositoryKeywords.WORKDAY + "+" + getQueryParamBy(Qualifiers.ORG, RepositoryOrganizations.OZAMUDIOTESTORGANIZATION)).
             then().
                 assertThat().
                     statusCode(200).

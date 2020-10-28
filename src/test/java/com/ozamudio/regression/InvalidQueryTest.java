@@ -36,7 +36,7 @@ public class InvalidQueryTest extends BaseTest {
     public void testBasePathWithInvalidQualifier() {
         given().
             when().
-                get(searchUrl+getQueryParamBy(Qualifiers.inexistent, "test")).
+                get(searchUrl+getQueryParamBy(Qualifiers.INEXISTENT, "test")).
             then().
                 assertThat().
                     statusCode(200).
@@ -69,7 +69,7 @@ public class InvalidQueryTest extends BaseTest {
     public void testBasePathWithPrivateOrInexistentOrg() {
         given().
             when().
-                get(searchUrl+getQueryParamBy(Qualifiers.org, RepositoryOrganizations.OZAMUDIOTESTORGANIZATION)).
+                get(searchUrl+getQueryParamBy(Qualifiers.ORG, RepositoryOrganizations.OZAMUDIOTESTORGANIZATION)).
             then().
                 assertThat().
                     statusCode(422).
@@ -87,7 +87,7 @@ public class InvalidQueryTest extends BaseTest {
     public void testBasePathWithInvalidDateFormat() {
         given().
             when().
-                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.created, ">YYYY-MM-DD")).
+                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.CREATED, ">YYYY-MM-DD")).
             then().
                 assertThat().
                     statusCode(422).
@@ -105,7 +105,7 @@ public class InvalidQueryTest extends BaseTest {
     public void testBasePathWithInvalidDateRanges() {
         given().
             when().
-                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.created, date2022+".."+date1992)).
+                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.CREATED, date2022+".."+date1992)).
             then().
                 assertThat().
                     statusCode(422).

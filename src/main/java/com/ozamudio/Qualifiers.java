@@ -1,14 +1,23 @@
 package com.ozamudio;
 
 public enum Qualifiers {
-    in,
-    user,
-    org,
-    size,
-    followers,
-    stars,
-    forks,
-    created,
-    language,
-    inexistent,
+    IN,
+    USER,
+    ORG,
+    SIZE,
+    FOLLOWERS,
+    STARS,
+    FORKS,
+    CREATED,
+    LANGUAGE,
+    INEXISTENT,
+    SORT,
+    ORDER,
+    PER_PAGE,
+    DESC,
+    ASC;
+
+    public String toLowerCase() {
+        return name().toLowerCase();
+    }
 }

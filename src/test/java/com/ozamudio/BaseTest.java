@@ -9,7 +9,7 @@ public class BaseTest {
     protected final String statusUrl = baseUrl+"/status";
     protected final String searchUrl = baseUrl+"/search/repositories?q=";
     protected final String rateLimitUrl = baseUrl+"/rate_limit";
-    protected final String authToken = "token eba39240d638775f27442504d5de73992a8a009b";
+    protected final String authToken = "token 7a5459beb8172011154cfb0d43fb78c2da055437";
     protected final String date1992 = "1992-08-11T00:00:00Z";
     protected final String date2020 = "2020-08-11T00:00:00Z";
     protected final String date2022 = "2022-08-11T00:00:00Z";
@@ -20,7 +20,11 @@ public class BaseTest {
     }
 
     protected String getQueryParamBy(Qualifiers qualifier, Object argument) {
-        return qualifier.toString()+":"+argument.toString();
+        return qualifier.toLowerCase()+":"+argument;
+    }
+
+    protected String getQueryOptions(Qualifiers qualifier, Qualifiers argument) {
+        return "&"+qualifier.toLowerCase()+"="+argument.toLowerCase();
     }
 
     /**

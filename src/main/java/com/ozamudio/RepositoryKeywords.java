@@ -3,7 +3,7 @@ package com.ozamudio;
 public enum RepositoryKeywords {
     CATS,
     WORKDAY,
-    AUTOMATION,
+    CODE,
     火,
     ж,
 }

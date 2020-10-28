@@ -52,7 +52,7 @@ public class SmokeTest extends BaseTest {
     public void testBasePathWithOneQualifierYieldsResults() {
         given().
             when().
-                get(searchUrl+getQueryParamBy(Qualifiers.user, RepositoryOwners.OZAMUDIOTESTOWNER)).
+                get(searchUrl+getQueryParamBy(Qualifiers.USER, RepositoryOwners.OZAMUDIOTESTOWNER)).
             then().
                 assertThat().
                     statusCode(200).
@@ -66,7 +66,7 @@ public class SmokeTest extends BaseTest {
     public void testBasePathWithOneKeywordAndFileYieldsResults() {
         given().
             when().
-                get(searchUrl+RepositoryKeywords.CATS+"+"+getQueryParamBy(Qualifiers.in, RepositoryFiles.README)).
+                get(searchUrl+RepositoryKeywords.CATS+"+"+getQueryParamBy(Qualifiers.IN, RepositoryFiles.README)).
             then().
                 assertThat().
                     statusCode(200).
@@ -80,7 +80,7 @@ public class SmokeTest extends BaseTest {
     public void testBasePathWithOnePublicOrgFileYieldsResults() {
         given().
             when().
-                get(searchUrl+getQueryParamBy(Qualifiers.org, RepositoryOrganizations.WORKDAY)).
+                get(searchUrl+getQueryParamBy(Qualifiers.ORG, RepositoryOrganizations.WORKDAY)).
             then().
             assertThat().
                 statusCode(200).
