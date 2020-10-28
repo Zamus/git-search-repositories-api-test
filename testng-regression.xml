@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Git Repository Search Regression Suite" verbose="1" parallel="tests">
+    <test name="Regression Test">
+        <classes>
+<!--            <class name="com.ozamudio.smoke.SmokeTest"/>-->
+<!--            <class name="com.ozamudio.regression.OrgSearchTest"/>-->
+<!--            <class name="com.ozamudio.regression.UserSearchTest"/>-->
+<!--            <class name="com.ozamudio.regression.InvalidQueryTest"/>-->
+            <class name="com.ozamudio.regression.FilteredSearchTest"/>
+        </classes>
+    </test>
+</suite>
