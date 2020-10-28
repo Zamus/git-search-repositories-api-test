@@ -41,9 +41,108 @@ public class OrderAndSortSearchTest extends BaseTest {
                 and().
                     body("items.size()", greaterThanOrEqualTo(1)).
                 extract().jsonPath().getList("items.stargazers_count");
-        System.out.println(starsValues);
         for (int i = 0; i < starsValues.size()-1; i++) {
             MatcherAssert.assertThat(starsValues.get(i), greaterThanOrEqualTo(starsValues.get(i+1)));
+        }
+    }
+
+    @Test
+    public void testBasePathOrderingByStarsDescWithMaxResults() {
+        List<Integer> starsValues = given().
+            when().
+                get(searchUrl + RepositoryKeywords.CODE + getQueryOptions(Qualifiers.SORT, Qualifiers.STARS) + getQueryOptions(Qualifiers.ORDER, Qualifiers.DESC) + getQueryOptions(Qualifiers.PER_PAGE, 100)).
+            then().
+                assertThat().
+                   statusCode(200).
+                and().
+                    contentType(ContentType.JSON).
+                and().
+                    body("total_count", greaterThanOrEqualTo(1)).
+                and().
+                    body("items.size()", equalTo(100)).
+                extract().jsonPath().getList("items.stargazers_count");
+        for (int i = 0; i < starsValues.size()-1; i++) {
+            MatcherAssert.assertThat(starsValues.get(i), greaterThanOrEqualTo(starsValues.get(i+1)));
+        }
+    }
+
+    @Test
+    public void testBasePathOrderingByStarsDescWithLowMaxResults() {
+        List<Integer> starsValues = given().
+                when().
+                get(searchUrl + RepositoryKeywords.CODE + getQueryOptions(Qualifiers.SORT, Qualifiers.STARS) + getQueryOptions(Qualifiers.ORDER, Qualifiers.DESC) + getQueryOptions(Qualifiers.PER_PAGE, 5)).
+                then().
+                assertThat().
+                statusCode(200).
+                and().
+                contentType(ContentType.JSON).
+                and().
+                body("total_count", greaterThanOrEqualTo(1)).
+                and().
+                body("items.size()", equalTo(5)).
+                extract().jsonPath().getList("items.stargazers_count");
+        for (int i = 0; i < starsValues.size()-1; i++) {
+            MatcherAssert.assertThat(starsValues.get(i), greaterThanOrEqualTo(starsValues.get(i+1)));
+        }
+    }
+
+    @Test
+    public void testBasePathOrderingByStarsAsc() {
+        List<Integer> starsValues = given().
+                when().
+                get(searchUrl + RepositoryKeywords.CODE + getQueryOptions(Qualifiers.SORT, Qualifiers.STARS) + getQueryOptions(Qualifiers.ORDER, Qualifiers.ASC)).
+                then().
+                assertThat().
+                statusCode(200).
+                and().
+                contentType(ContentType.JSON).
+                and().
+                body("total_count", greaterThanOrEqualTo(1)).
+                and().
+                body("items.size()", greaterThanOrEqualTo(1)).
+                extract().jsonPath().getList("items.stargazers_count");
+        for (int i = 0; i < starsValues.size()-1; i++) {
+            MatcherAssert.assertThat(starsValues.get(i), greaterThanOrEqualTo(starsValues.get(i+1)));
+        }
+    }
+
+    @Test
+    public void testBasePathOrderingByStarsAscWithMaxResults() {
+        List<Integer> starsValues = given().
+                when().
+                get(searchUrl + RepositoryKeywords.CODE + getQueryOptions(Qualifiers.SORT, Qualifiers.STARS) + getQueryOptions(Qualifiers.ORDER, Qualifiers.ASC) + getQueryOptions(Qualifiers.PER_PAGE, 100)).
+                then().
+                assertThat().
+                statusCode(200).
+                and().
+                contentType(ContentType.JSON).
+                and().
+                body("total_count", greaterThanOrEqualTo(1)).
+                and().
+                body("items.size()", equalTo(100)).
+                extract().jsonPath().getList("items.stargazers_count");
+        for (int i = 0; i < starsValues.size()-1; i++) {
+            MatcherAssert.assertThat(starsValues.get(i), lessThanOrEqualTo(starsValues.get(i+1)));
+        }
+    }
+
+    @Test
+    public void testBasePathOrderingByStarsAscInACertainStarsRange() {
+        List<Integer> starsValues = given().
+            when().
+                get(searchUrl + RepositoryKeywords.CODE + getQueryOptions(Qualifiers.SORT, Qualifiers.STARS) + getQueryOptions(Qualifiers.ORDER, Qualifiers.ASC) + getQueryOptions(Qualifiers.PER_PAGE, 100)).
+            then().
+                assertThat().
+                    statusCode(200).
+                and().
+                    contentType(ContentType.JSON).ah
+                and().
+                    body("total_count", greaterThanOrEqualTo(1)).
+                and().
+                    body("items.size()", equalTo(100)).
+                extract().jsonPath().getList("items.stargazers_count");
+        for (int i = 0; i < starsValues.size()-1; i++) {
+            MatcherAssert.assertThat(starsValues.get(i), lessThanOrEqualTo(starsValues.get(i+1)));
         }
     }
 

@@ -13,10 +13,12 @@ public class BaseTest {
     protected final String date1992 = "1992-08-11T00:00:00Z";
     protected final String date2020 = "2020-08-11T00:00:00Z";
     protected final String date2022 = "2022-08-11T00:00:00Z";
+    protected final int minRateLimit = 1;
+    protected final int maxRateLimit = 10;
 
     @BeforeMethod
     public void beforeMethod() {
-        waitIfRateLimited();
+        waitIfRateLimited(minRateLimit);
     }
 
     protected String getQueryParamBy(Qualifiers qualifier, Object argument) {
@@ -27,11 +29,15 @@ public class BaseTest {
         return "&"+qualifier.toLowerCase()+"="+argument.toLowerCase();
     }
 
+    protected String getQueryOptions(Qualifiers qualifier, int argument) {
+        return "&"+qualifier.toLowerCase()+"="+argument;
+    }
+
     /**
      * This method is important to make sure that any given test does not fail due to github's api ratelimiting
      * (10 req per minute if not authenticated)
      */
-    private void waitIfRateLimited () {
+    protected void waitIfRateLimited (int limit) {
         int response =
             given().
                 when().
@@ -39,7 +45,7 @@ public class BaseTest {
                 then().
                     extract().jsonPath().getInt("resources.search.remaining");
         System.out.println("Rate limit remaining before start of the test: "+response);
-        if (response < 1) {
+        if (response < limit) {
             try {
                 System.out.println("Pausing for 70 seconds for rate limit reset on API");
                 Thread.sleep(70000);
@@ -49,4 +55,5 @@ public class BaseTest {
             }
         }
     }
+
 }

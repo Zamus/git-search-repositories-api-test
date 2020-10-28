@@ -11,6 +11,7 @@
 <!--            <class name="com.ozamudio.regression.FilteredSearchTest"/>-->
 <!--            <class name="com.ozamudio.regression.SpecialCharactersSearchTest"/>-->
             <class name="com.ozamudio.regression.OrderAndSortSearchTest"/>
+<!--            <class name="com.ozamudio.regression.RateLimitTest"/>-->
         </classes>
     </test>
 </suite>

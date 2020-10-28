@@ -92,15 +92,15 @@ public class SmokeTest extends BaseTest {
 
 
     /**
-     * For this tests, I'd expect that an implementation which does not allow for certain HTTP methods to be run,
+     * For this test, I'd expect that an implementation which does not allow for certain HTTP methods to be run,
      * would return an HTTP message for "Method not allowed". However, git's API seems to be returning 404 for these.
      * As a git tester, I have two ways of going forward:
      *     - Let this test fail and have it fixed, and an alarm will sound everytime this test fails.
      *     - Get to know that this is how git wants its API to work. As in the real world I'm not a real git tester
      *     and this part of their API is not documented, and only for the purpose of demonstration that this should be
      *     taken into account when testing APIs, I'll leave it as failing with what I would assume should happen
-     *     (because making it pass only for the purpose of the exercise goes against all my ideas of what API
-     *     good practices are).
+     *     (because making it pass only for the purpose of the exercise even if I impersonate a fake git tester
+     *     goes against all my ideas of what API good practices are).
      */
     @Test(priority = 2, enabled = false)
     public void testBasePathPostNotAllowed() {
@@ -108,56 +108,56 @@ public class SmokeTest extends BaseTest {
             when().
                 post(statusUrl).
             then().
-            assertThat().
-                statusCode(405).
-            and().
-                contentType(ContentType.JSON);
+                assertThat().
+                    statusCode(405).
+                and().
+                    contentType(ContentType.JSON);
     }
 
     /**
-     * For this tests, I'd expect that an implementation which does not allow for certain HTTP methods to be run,
+     * For this test, I'd expect that an implementation which does not allow for certain HTTP methods to be run,
      * would return an HTTP message for "Method not allowed". However, git's API seems to be returning 404 for these.
      * As a git tester, I have two ways of going forward:
      *     - Let this test fail and have it fixed, and an alarm will sound everytime this test fails.
      *     - Get to know that this is how git wants its API to work. As in the real world I'm not a real git tester
      *     and this part of their API is not documented, and only for the purpose of demonstration that this should be
      *     taken into account when testing APIs, I'll leave it as failing with what I would assume should happen
-     *     (because making it pass only for the purpose of the exercise goes against all my ideas of what API
-     *     good practices are).
+     *     (because making it pass only for the purpose of the exercise even if I impersonate a fake git tester
+     *     goes against all my ideas of what API good practices are).
      */
     @Test(priority = 2, enabled = false)
     public void testBasePathPatchNotAllowed() {
         given().
-                when().
+            when().
                 patch(statusUrl).
-                then().
+            then().
                 assertThat().
-                statusCode(405).
+                    statusCode(405).
                 and().
-                contentType(ContentType.JSON);
+                    contentType(ContentType.JSON);
     }
 
     /**
-     * For this tests, I'd expect that an implementation which does not allow for certain HTTP methods to be run,
+     * For this test, I'd expect that an implementation which does not allow for certain HTTP methods to be run,
      * would return an HTTP message for "Method not allowed". However, git's API seems to be returning 404 for these.
      * As a git tester, I have two ways of going forward:
      *     - Let this test fail and have it fixed, and an alarm will sound everytime this test fails.
      *     - Get to know that this is how git wants its API to work. As in the real world I'm not a real git tester
      *     and this part of their API is not documented, and only for the purpose of demonstration that this should be
      *     taken into account when testing APIs, I'll leave it as failing with what I would assume should happen
-     *     (because making it pass only for the purpose of the exercise goes against all my ideas of what API
-     *     good practices are).
+     *     (because making it pass only for the purpose of the exercise even if I impersonate a fake git tester
+     *     goes against all my ideas of what API good practices are).
      */
     @Test(priority = 2, enabled = false)
     public void testBasePathPutNotAllowed() {
         given().
-                when().
+            when().
                 patch(statusUrl).
-                then().
+            then().
                 assertThat().
-                statusCode(405).
+                    statusCode(405).
                 and().
-                contentType(ContentType.JSON);
+                    contentType(ContentType.JSON);
     }
 
 }
