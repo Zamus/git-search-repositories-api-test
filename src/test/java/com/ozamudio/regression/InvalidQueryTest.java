@@ -2,6 +2,7 @@ package com.ozamudio.regression;
 
 import com.ozamudio.BaseTest;
 import com.ozamudio.Qualifiers;
+import com.ozamudio.RepositoryKeywords;
 import com.ozamudio.RepositoryOrganizations;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
@@ -78,6 +79,40 @@ public class InvalidQueryTest extends BaseTest {
                     body("message", containsStringIgnoringCase("Validation Failed")).
                 and().
                     body("errors.message[0]", containsStringIgnoringCase("The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.")).
+                and().
+                    body("errors.code[0]", containsStringIgnoringCase("invalid"));
+    }
+
+    @Test
+    public void testBasePathWithInvalidDateFormat() {
+        given().
+            when().
+                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.created, ">YYYY-MM-DD")).
+            then().
+                assertThat().
+                    statusCode(422).
+                and().
+                    contentType(ContentType.JSON).
+                and().
+                    body("message", containsStringIgnoringCase("Validation Failed")).
+                and().
+                    body("errors.message[0]", containsStringIgnoringCase("YYYY-MM-DD\" is not a recognized date/time format. Please provide an ISO 8601 date/time value, such as YYYY-MM-DD.")).
+                and().
+                    body("errors.code[0]", containsStringIgnoringCase("invalid"));
+    }
+
+    @Test
+    public void testBasePathWithInvalidDateRanges() {
+        given().
+            when().
+                get(searchUrl + RepositoryKeywords.CATS + "+" + getQueryParamBy(Qualifiers.created, date2022+".."+date1992)).
+            then().
+                assertThat().
+                    statusCode(422).
+                and().
+                    body("message", containsStringIgnoringCase("Validation Failed")).
+                and().
+                    body("errors.message[0]", containsStringIgnoringCase("the lower bound of the range ("+date2022+" .. "+date1992+") is greater than the upper bound")).
                 and().
                     body("errors.code[0]", containsStringIgnoringCase("invalid"));
     }

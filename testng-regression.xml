@@ -8,8 +8,8 @@
 <!--            <class name="com.ozamudio.regression.OrgSearchTest"/>-->
 <!--            <class name="com.ozamudio.regression.UserSearchTest"/>-->
 <!--            <class name="com.ozamudio.regression.InvalidQueryTest"/>-->
-<!--            <class name="com.ozamudio.regression.FilteredSearchTest"/>-->
-            <class name="com.ozamudio.regression.SpecialCharactersSearchTest"/>
+            <class name="com.ozamudio.regression.FilteredSearchTest"/>
+<!--            <class name="com.ozamudio.regression.SpecialCharactersSearchTest"/>-->
         </classes>
     </test>
 </suite>
