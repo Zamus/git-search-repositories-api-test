@@ -2,7 +2,6 @@ package com.ozamudio.regression;
 
 import com.ozamudio.BaseTest;
 import com.ozamudio.Qualifiers;
-import com.ozamudio.RepositoryKeywords;
 import com.ozamudio.RepositoryOrganizations;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
@@ -13,7 +12,6 @@ import java.util.stream.IntStream;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsStringIgnoringCase;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
 public class InvalidQueryTest extends BaseTest {
 

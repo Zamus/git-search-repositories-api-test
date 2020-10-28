@@ -5,9 +5,7 @@ import com.ozamudio.Qualifiers;
 import com.ozamudio.RepositoryKeywords;
 import com.ozamudio.RepositoryNames;
 import com.ozamudio.RepositoryOrganizations;
-import com.ozamudio.RepositoryOwners;
 import io.restassured.http.ContentType;
-import jdk.jfr.internal.Repository;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;

@@ -4,5 +4,6 @@ public enum RepositoryKeywords {
     CATS,
     WORKDAY,
     AUTOMATION,
-    火がもえる,
+    火,
+    ж,
 }
