@@ -4,14 +4,15 @@
 <suite name="Git Repository Search Regression Suite" verbose="1" parallel="tests">
     <test name="Regression Test">
         <classes>
-<!--            <class name="com.ozamudio.smoke.SmokeTest"/>-->
-<!--            <class name="com.ozamudio.regression.OrgSearchTest"/>-->
-<!--            <class name="com.ozamudio.regression.UserSearchTest"/>-->
-<!--            <class name="com.ozamudio.regression.InvalidQueryTest"/>-->
-<!--            <class name="com.ozamudio.regression.FilteredSearchTest"/>-->
-<!--            <class name="com.ozamudio.regression.SpecialCharactersSearchTest"/>-->
+            <class name="com.ozamudio.smoke.SmokeTest"/>
+            <class name="com.ozamudio.regression.OrgSearchTest"/>
+            <class name="com.ozamudio.regression.UserSearchTest"/>
+            <class name="com.ozamudio.regression.InvalidQueryTest"/>
+            <class name="com.ozamudio.regression.FilteredSearchTest"/>
+            <class name="com.ozamudio.regression.SpecialCharactersSearchTest"/>
             <class name="com.ozamudio.regression.OrderAndSortSearchTest"/>
-<!--            <class name="com.ozamudio.regression.RateLimitTest"/>-->
+            <class name="com.ozamudio.regression.RateLimitTest"/>
+            <class name="com.ozamudio.regression.ResponseSchemaTest"/>
         </classes>
     </test>
 </suite>

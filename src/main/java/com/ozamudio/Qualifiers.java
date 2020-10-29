@@ -4,8 +4,6 @@ public enum Qualifiers {
     IN,
     USER,
     ORG,
-    SIZE,
-    FOLLOWERS,
     STARS,
     FORKS,
     CREATED,

@@ -68,7 +68,9 @@ public class UserSearchTest extends BaseTest {
                 and().
                     body("items.size()", equalTo(3)).
                 and().
-                    body("items.name.last()", equalToIgnoringCase(RepositoryNames.PRIVATEREPO.toString()));
+                    body("items.name.last()", equalToIgnoringCase(RepositoryNames.PRIVATEREPO.toString())).
+                and().
+                    body("items.private.last()", equalToIgnoringCase("true"));
     }
 
     @Test
