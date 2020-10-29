@@ -33,17 +33,19 @@ public class InvalidQueryTest extends BaseTest {
     }
 
     @Test
-    public void testBasePathWithInvalidQualifier() {
+    public void testBasePathMalformed() {
         given().
             when().
-                get(searchUrl+getQueryParamBy(Qualifiers.INEXISTENT, "test")).
+                get(baseUrl+"/search/repositories?"+RepositoryKeywords.WORKDAY).
             then().
                 assertThat().
-                    statusCode(200).
+                    statusCode(422).
                 and().
                     contentType(ContentType.JSON).
                 and().
-                    body("items.id.size()", equalTo(0));
+                    body("message", containsStringIgnoringCase("Validation Failed")).
+                and().
+                    body("errors.code[0]", containsStringIgnoringCase("missing"));
     }
 
     @Test
@@ -131,13 +133,13 @@ public class InvalidQueryTest extends BaseTest {
     @Test
     public void testBasePathPostNotAllowed() {
         given().
-                when().
+            when().
                 post(statusUrl).
-                then().
+            then().
                 assertThat().
-                statusCode(405).
+                    statusCode(405).
                 and().
-                contentType(ContentType.JSON);
+                    contentType(ContentType.JSON);
     }
 
     /**
@@ -154,13 +156,13 @@ public class InvalidQueryTest extends BaseTest {
     @Test
     public void testBasePathPatchNotAllowed() {
         given().
-                when().
+            when().
                 patch(statusUrl).
-                then().
+            then().
                 assertThat().
-                statusCode(405).
+                    statusCode(405).
                 and().
-                contentType(ContentType.JSON);
+                    contentType(ContentType.JSON);
     }
 
     /**
@@ -177,13 +179,28 @@ public class InvalidQueryTest extends BaseTest {
     @Test
     public void testBasePathPutNotAllowed() {
         given().
-                when().
+            when().
                 patch(statusUrl).
-                then().
+            then().
                 assertThat().
-                statusCode(405).
+                    statusCode(405).
                 and().
-                contentType(ContentType.JSON);
+                    contentType(ContentType.JSON);
+    }
+
+
+    @Test
+    public void testBasePathWithInvalidQualifier() {
+        given().
+            when().
+                get(searchUrl+getQueryParamBy(Qualifiers.INEXISTENT, "test")).
+            then().
+                assertThat().
+                    statusCode(200).
+                and().
+                    contentType(ContentType.JSON).
+                and().
+                    body("items.id.size()", equalTo(0));
     }
 
 }
