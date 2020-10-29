@@ -121,7 +121,7 @@ e.g.
 
 ## Instructions on how to visualize results
 
-To visualize the testing results in after a suite runs, execute this from the command line:
+To visualize the testing results after a suite runs, execute this from the command line:
 
 ``` mvn io.qameta.allure:allure-maven:serve```
 
