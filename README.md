@@ -39,10 +39,10 @@ Repository for project on testing of Git's repository searches API
 - Custom user&repo data needed for some test cases: :white_check_mark:
 
 - CI implementation: :x:
-  - While this would make it a more complete solution, and it's considered in the testing strategy for scaling and making sure we can run our tests anytime/anywhere, because of time constraints it will not be done for this example.
+  - While this would make it a more complete solution, and it's considered in the testing strategy for scaling and making sure we can run our tests anytime/anywhere, but because of time constraints it will not be done for this example.
   - At the same time, no test status visual reporting tools (e.g. Allure) are being used.
 - Implementation of backend logic for API request-response handling: :x:
-  - For this rest-assured will be used. As it's a very popular tool it provides use with ease of usage and community support. There are no use cases that demand a custom solution.
+  - For this example, the rest-assured library will be used. As it's a very popular tool it provides use with ease of usage and community support. There are no use cases that demand a custom solution.
 - Automation of performance testing: :x:
   - Although usually this would be included and it's in the strategy, it will not be implemented as would need a bit of time to become a real solution. Plus, Git already has rate-limiting in place.
 - Automation of security testing: :x:
