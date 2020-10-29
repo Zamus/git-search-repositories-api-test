@@ -101,6 +101,8 @@ This code was generated using:
 - JDK11
 - Maven 3.6.1
 
+Before trying to run anything, you need to clone this repo to your local environment.
+
 In order to run the tests at a **smoke** level, you need to navigate to the project root folder and execute this via the command line:
 
 ```mvn -Psmoke clean test```
