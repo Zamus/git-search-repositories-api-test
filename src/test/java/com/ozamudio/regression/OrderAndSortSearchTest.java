@@ -104,7 +104,7 @@ public class OrderAndSortSearchTest extends BaseTest {
     public void testBasePathOrderingByStarsDescInACertainForksRange() {
         List<Integer> starsValues = given().
                 when().
-                    get(searchUrl + RepositoryKeywords.CODE + "+" + getQueryParamBy(Qualifiers.FORKS, "5..100") + getQueryOptions(Qualifiers.SORT, Qualifiers.STARS) + getQueryOptions(Qualifiers.ORDER, Qualifiers.DESC)).
+                    get(searchUrl + RepositoryKeywords.CODE + "+" + getQueryParamBy(Qualifiers.FORKS, "1..5") + getQueryOptions(Qualifiers.SORT, Qualifiers.STARS) + getQueryOptions(Qualifiers.ORDER, Qualifiers.DESC)).
                 then().
                     assertThat().
                         statusCode(200).
@@ -115,9 +115,9 @@ public class OrderAndSortSearchTest extends BaseTest {
                     and().
                         body("items.size()", greaterThanOrEqualTo(1)).
                     and().
-                        body("items.forks", everyItem(lessThanOrEqualTo(100))).
+                        body("items.forks", everyItem(lessThanOrEqualTo(5))).
                     and().
-                        body("items.forks", everyItem(greaterThanOrEqualTo(5))).
+                        body("items.forks", everyItem(greaterThanOrEqualTo(1))).
                     extract().jsonPath().getList("items.stargazers_count");
         for (int i = 0; i < starsValues.size()-1; i++) {
             MatcherAssert.assertThat(starsValues.get(i), greaterThanOrEqualTo(starsValues.get(i+1)));
