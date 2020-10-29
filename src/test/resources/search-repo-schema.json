@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "total_count": {
+      "type": "integer"
+    },
+    "incomplete_results": {
+      "type": "boolean"
+    },
+    "items": {
+      "type": "array",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "node_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "private": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
