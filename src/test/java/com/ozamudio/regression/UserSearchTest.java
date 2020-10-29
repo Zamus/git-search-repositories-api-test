@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.is;
 
 public class UserSearchTest extends BaseTest {
 
@@ -70,7 +71,7 @@ public class UserSearchTest extends BaseTest {
                 and().
                     body("items.name.last()", equalToIgnoringCase(RepositoryNames.PRIVATEREPO.toString())).
                 and().
-                    body("items.private.last()", equalToIgnoringCase("true"));
+                    body("items.private.last()", is(true));
     }
 
     @Test
