@@ -7,8 +7,9 @@ Repository for project on testing of Git's repository searches API
   * [Scope of this project](#scope-of-this-project)
   * [Testing Strategy](#testing-strategy)
     + [Levels of testing](#levels-of-testing)
-      - [Tests that are performed on a local environment (and are not part of the implementation in this repository)](#tests-that-are-performed-on-a-local-environment--and-are-not-part-of-the-implementation-in-this-repository-)
-      - [Tests that are executed against testing (QA) environments](#tests-that-are-executed-against-testing--qa--environments)
+      - [Tests that are performed on a local environment and are not part of the implementation in this repository](#tests-that-are-performed-on-a-local-environment-and-are-not-part-of-the-implementation-in-this-repository)
+      - [Tests that are executed against lower environments, like QA and STG](#tests-that-are-executed-against-lower-environments--like-qa-and-stg)
+      - [Tests that are executed against production environments](#tests-that-are-executed-against-production-environments)
 - [Instructions on how to run](#instructions-on-how-to-run)
 
 
@@ -75,18 +76,22 @@ Each activity has its own set of subtasks that we must do to prepare for that mo
 
 With that being said, based on the SDLC stages described, there are testing levels that are attached to each of these. To name a few where we can contribute and which can be very important to our CI strategy:
 
-#### Tests that are performed on a local environment (and are not part of the implementation in this repository)
+#### Tests that are performed on a local environment and are not part of the implementation in this repository
 - Unit testing: these can be written by both the SWE and the SDET. These will be run against every PR that a person wants to merge to the "develop" (current release code) and "main" (production code) branches.
 - Integration testing: same as before, but instead their testing influence is broader. We still test against mocked data and not real containers with our services.
 - Contract testing: same as integration, will ensure services don't change their interfaces so that their interactions keep working as expected.
 
-#### Tests that are executed against testing (QA) environments
+#### Tests that are executed against lower environments, like QA and STG
 - Stress testing: will give us an idea on how the limits of load limits the services we want to deploy can handle. This also applies to other types of non-functional testing (compliance, security..)
 - End-to-End testing: we have two different flavors for this: backend (can be against an API) and frontend/UI. Both will execute after initial checks are done on the code, and against a QA environment. We have two main levels and may have some in between:
-	- Smoke: basic functionalities work, usually very few and quick to complete.
-	- Regression: our full suite, with as many functional scenarios we can think off, and which may put the system under stress. Every test stage is important, but these will give us the most complete feedback of them all (usually they also take the longer to execute!)
+	- Smoke: basic functionalities work, usually very few and quick to complete. Can be executed regularly, maybe not in a PR-by_PR basis but nightly on builds deployed on QA.
+	- Regression: our full suite, with as many functional scenarios we can think off, and which may put the system under stress. Every test stage is important, but these will give us the most complete feedback of them all (usually they also take the longer to execute!) and will tell us if we can go to the next stage (QA -> STG -> PROD) or not.
 	- [Optional] Sanity: some people use it as a middle level in the e2e, but for this example we are not considering it.
 
+#### Tests that are executed against production environments
+Yes, we want to keep testing on production. This part is not attached to any SDLC stage in particular, it actually happens from start to finish (and will continue across quarters).
+We need to have live status on our services deployed on production. On one hand we will have metrics and alarms that will set off if something is wrong with our service.
+On the other hand, we can reuse smoke tests and execute them on an hourly basis on production environments, the same way we do with "lower" environments but more frequently. Plus, they are lightweight and should be quick to complete.
 
   
 # Instructions on how to run
