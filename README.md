@@ -5,6 +5,10 @@ Repository for project on testing of Git's repository searches API
 
 - [Scenario](#scenario)
   * [Scope of this project](#scope-of-this-project)
+  * [Testing Strategy](#testing-strategy)
+    + [Levels of testing](#levels-of-testing)
+      - [Tests that are performed on a local environment (and are not part of the implementation in this repository)](#tests-that-are-performed-on-a-local-environment--and-are-not-part-of-the-implementation-in-this-repository-)
+      - [Tests that are executed against testing (QA) environments](#tests-that-are-executed-against-testing--qa--environments)
 - [Instructions on how to run](#instructions-on-how-to-run)
 
 
@@ -43,6 +47,47 @@ Repository for project on testing of Git's repository searches API
 - Automation of security testing: :x:
   - Implemented a couple tests using auth tokens for private repositories search, but not directly testing security.
   
+## Testing Strategy
+**"Okay, soooo.... how would this fit into an API testing strategy for Git?"
+Glad you asked!**
+
+As stated before, I'm not exactly an SDET working @ Git. However, let's play the part.
+
+The first question to answer is: what do we think the SDLC (software development life cycle) looks like. We don't really know, but for the sake of the exercise, we can jump into some assumptions:
+
+- Git follows a BDD methodology. This works very well when your complete stack of stakeholders wants to use the products they make, and we are sure they do! 
+	- This means that everyone is involved in creating software from the very begining. 
+- Imaginate they don't already have a CI strategy (which I'm sure they do), they want to implement it, so that they can deliver very quickly to their community. Continuous integration means continuous feedback, which reflects in greater visibility, which also means less bugs!
+- There are multiple stages to how they test their product. We will go into more detail in a bit. And these stages are executed and coordinatated between many people.
+- SDETs and SWEs start writing tests as soon as they work out the specs with the PMs. These tests will lead their developments.
+- Let's suppose Git releases a new major version of their APIs every quarter, with hotfixes and minors in between majors.
+
+So a first look at our general testing strategy looks like this:
+
+![](https://github.com/Zamus/git-search-repositories-api-test/blob/master/readme-images/Releases%20overview.png?raw=true)
+
+At first, one may think that testing only happens in certain stages, but that's not true. SDET's tasks and responsibilities are all over the SDLC. To give you a more detailed view
+![](https://github.com/Zamus/git-search-repositories-api-test/blob/master/readme-images/Releases%20detailed.png?raw=true)
+
+Each activity has its own set of subtasks that we must do to prepare for that moment when we deploy (and even after that, as we will keep helping with the release after it's on production).
+
+### Levels of testing
+
+With that being said, based on the SDLC stages described, there are testing levels that are attached to each of these. To name a few where we can contribute and which can be very important to our CI strategy:
+
+#### Tests that are performed on a local environment (and are not part of the implementation in this repository)
+- Unit testing: these can be written by both the SWE and the SDET. These will be run against every PR that a person wants to merge to the "develop" (current release code) and "main" (production code) branches.
+- Integration testing: same as before, but instead their testing influence is broader. We still test against mocked data and not real containers with our services.
+- Contract testing: same as integration, will ensure services don't change their interfaces so that their interactions keep working as expected.
+
+#### Tests that are executed against testing (QA) environments
+- Stress testing: will give us an idea on how the limits of load limits the services we want to deploy can handle. This also applies to other types of non-functional testing (compliance, security..)
+- End-to-End testing: we have two different flavors for this: backend (can be against an API) and frontend/UI. Both will execute after initial checks are done on the code, and against a QA environment. We have two main levels and may have some in between:
+	- Smoke: basic functionalities work, usually very few and quick to complete.
+	- Regression: our full suite, with as many functional scenarios we can think off, and which may put the system under stress. Every test stage is important, but these will give us the most complete feedback of them all (usually they also take the longer to execute!)
+	- [Optional] Sanity: some people use it as a middle level in the e2e, but for this example we are not considering it.
+
+
   
 # Instructions on how to run
 This repository is made of two levels of testing: smoke and regression, with smoke being a very small subset of the regression suite.
