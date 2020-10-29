@@ -41,6 +41,7 @@ Repository for project on testing of Git's repository searches API
 - CI implementation: :x:
   - While this would make it a more complete solution, and it's considered in the testing strategy for scaling and making sure we can run our tests anytime/anywhere, but because of time constraints it will not be done for this example.
   - At the same time, no test status visual reporting tools (e.g. Allure) are being used.
+  - A nice to have would have been to have a docker image build so that it can run anywhere.
 - Implementation of backend logic for API request-response handling: :x:
   - For this example, the rest-assured library will be used. As it's a very popular tool it provides use with ease of usage and community support. There are no use cases that demand a custom solution.
 - Automation of performance testing: :x:
