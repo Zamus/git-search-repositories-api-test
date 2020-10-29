@@ -21,7 +21,7 @@ Repository for project on testing of Git's repository searches API
 - We need to define and design a testing strategy, as well as implementing some automated test cases for it.
 - CI implementation is out of scope for this, but it will get a mention in how it would work inside the testing strategy.
 - Used a couple of libraries/frameworks that are commonly used along the testing community to accomplish this, so that we could focus on the strategy and scenarios.
-  - Libraries used in this repository
+  - Dependencies used in this repository
     - JDK11
     - Maven 3.6.1
     - io.rest-assured v4.1.2
@@ -30,6 +30,8 @@ Repository for project on testing of Git's repository searches API
     - com.fasterxml.jackson.core.jackson-databind v2.10.0
     - javax.xml.bind-jaxb-api v2.3.1
     - org.apache.maven.plugins.maven-surefire-plugin v2.18.1
+    - io.qameta.allure.allure-testng v2.13.2
+    - io.qameta.allure.allure-maven v2.10.0
 
 ## Scope of this project
 - Testing process strategy: :white_check_mark:
