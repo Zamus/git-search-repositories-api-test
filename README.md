@@ -11,6 +11,7 @@ Repository for project on testing of Git's repository searches API
       - [Tests that are executed against lower environments, like QA and STG](#tests-that-are-executed-against-lower-environments--like-qa-and-stg)
       - [Tests that are executed against production environments](#tests-that-are-executed-against-production-environments)
 - [Instructions on how to run](#instructions-on-how-to-run)
+  * [Instructions on how to visualize results](#instructions-on-how-to-visualize-results)
 
 
 # Scenario
@@ -37,10 +38,10 @@ Repository for project on testing of Git's repository searches API
 - Automation takes into consideration the API rate limiting: :white_check_mark:
 - Instructions on how to run it: :white_check_mark:
 - Custom user&repo data needed for some test cases: :white_check_mark:
+- Test status visual reporting tools (e.g. Allure): :white_check_mark:
 
 - CI implementation: :x:
   - While this would make it a more complete solution, and it's considered in the testing strategy for scaling and making sure we can run our tests anytime/anywhere, but because of time constraints it will not be done for this example.
-  - At the same time, no test status visual reporting tools (e.g. Allure) are being used.
   - A nice to have would have been to have a docker image build so that it can run anywhere.
 - Implementation of backend logic for API request-response handling: :x:
   - For this example, the rest-assured library will be used. As it's a very popular tool it provides use with ease of usage and community support. There are no use cases that demand a custom solution.
@@ -106,14 +107,24 @@ Before trying to run anything, you need to clone this repo to your local environ
 
 In order to run the tests at a **smoke** level, you need to navigate to the project root folder and execute this via the command line:
 
-```mvn -Psmoke clean test```
+```mvn -Psmoke clean test site```
 
 In order to run the tests at a **regression** level, you need to navigate to the project root folder and execute this via the command line:
 
-```mvn -Pregression clean test```
+```mvn -Pregression clean test site```
 
 In order to run a specific test class, you need to navigate to the project root folder and execute this via the command line:
 
-```mvn -Dtest=${testClassName} test```
+```mvn -Dtest=${testClassName} test site```
 e.g.
-```mvn -Dtest=RateLimitTest test```
+```mvn -Dtest=RateLimitTest test site```
+
+## Instructions on how to visualize results
+
+To visualize the testing results in after a suite runs, execute this from the command line:
+
+``` mvn io.qameta.allure:allure-maven:serve```
+
+This command will open a web server in your local system with the Allure report being displayed in your default browser. It should look like this: 
+![](https://github.com/Zamus/git-search-repositories-api-test/blob/master/readme-images/Allure%20report%20example.png?raw=true)
+
