@@ -14,7 +14,21 @@ public class SpecialCharactersSearchTest extends BaseTest {
     public void testBasePathWithOneSpecialCharacterKeywordYieldsResults() {
         given().
             when().
-                get(searchUrl+RepositoryKeywords.火).
+                get(searchUrl+RepositoryKeywords.ж).
+            then().
+                assertThat().
+                    statusCode(200).
+                and().
+                    contentType(ContentType.JSON).
+                and().
+                    body("items.id.size()",greaterThanOrEqualTo(1));
+    }
+
+    @Test
+    public void testBasePathWithCombinationOfSpecialCharactersKeywordIsAccepted() {
+        given().
+            when().
+                get(searchUrl+RepositoryKeywords.火+RepositoryKeywords.CATS).
             then().
                 assertThat().
                     statusCode(200).

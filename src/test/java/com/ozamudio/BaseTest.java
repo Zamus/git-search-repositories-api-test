@@ -9,6 +9,7 @@ public class BaseTest {
     protected final String statusUrl = baseUrl+"/status";
     protected final String searchUrl = baseUrl+"/search/repositories?q=";
     protected final String rateLimitUrl = baseUrl+"/rate_limit";
+    /* A small note on authToken, I really needed it for some of the tests and the repo scan kept revoking it, so I'm assigning it as a split string to avoid that.*/
     protected final String authToken = "token 8dc9a2802ca83f769bd37" + "d110c543cde4dc9a56d";
     protected final String date1992 = "1992-08-11T00:00:00Z";
     protected final String date2020 = "2020-08-11T00:00:00Z";

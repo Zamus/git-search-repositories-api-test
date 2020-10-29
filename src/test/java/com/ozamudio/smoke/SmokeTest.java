@@ -18,8 +18,8 @@ import org.testng.annotations.Test;
  *      and discard failure causes for upcoming tests.
  *      - The base path with one keyword returns a success and json type response.
  *      - Some simple tests where I use at least one of each type of restriction for the search query (keyword, owner and file).
- *
  */
+
 public class SmokeTest extends BaseTest {
 
     @Test(priority = 1)
