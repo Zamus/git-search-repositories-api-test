@@ -135,7 +135,7 @@ public class OrderAndSortSearchTest extends BaseTest {
                 assertThat().
                     statusCode(200).
                 and().
-                    contentType(ContentType.JSON).ah
+                    contentType(ContentType.JSON).
                 and().
                     body("total_count", greaterThanOrEqualTo(1)).
                 and().
