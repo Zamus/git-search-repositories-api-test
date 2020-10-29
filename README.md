@@ -14,8 +14,8 @@ Repository for project on testing of Git's repository searches API
 
 
 # Scenario
-- We are Git testers and want to make sure quality of one of Git's API is up to the task. For this example, we are using https://api.github.com/search/repositories? .
-- We are familiar with the documentation that's in https://developer.github.com/v3/search/#search-repositories.
+- We are Git testers and want to make sure quality of one of Git's API is up to the task. For this example, we are using https://api.github.com/search/repositories .
+- We are familiar with the documentation that's in https://developer.github.com/v3/search/#search-repositories .
 - We picked at least 5 keywords and made test cases for querying, sorting and ordering of requests.
 - We need to define and design a testing strategy, as well as implementing some automated test cases for it.
 - CI implementation is out of scope for this, but it will get a mention in how it would work inside the testing strategy.
