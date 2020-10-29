@@ -80,14 +80,14 @@ With that being said, based on the SDLC stages described, there are testing leve
 #### Tests that are performed on a local environment and are not part of the implementation in this repository
 - Unit testing: these can be written by both the SWE and the SDET. These will be run against every PR that a person wants to merge to the "develop" (current release code) and "main" (production code) branches.
 - Integration testing: same as before, but instead their testing influence is broader. We still test against mocked data and not real containers with our services.
-- Contract testing: same as integration, will ensure services don't change their interfaces so that their interactions keep working as expected.
+- Contract testing: same as integration, will ensure services don't change their interfaces so that their interactions keep working as expected. This can come in the form of JSON schema validation (which I included under the regression suite for this case).
 - Code correctness testing: these are small checks you can implement in your repository and that you can also execute on a PR-by-PR basis. For instance, if you were making JS code, you would want to have static code analysis tools like JSLint integrated with your builds in jenkins, and have a hook to Git (or whatever SCM tool you are using) that disables merges until these checks pass, which also applies to every test type mentioned above.
 
 #### Tests that are executed against lower environments, like QA and STG
 - Stress testing: will give us an idea on how the limits of load limits the services we want to deploy can handle. This also applies to other types of non-functional testing (compliance, security..)
 - End-to-End testing: we have two different flavors for this: backend (can be against an API) and frontend/UI. Both will execute after initial checks are done on the code, and against a QA environment. We have two main levels and may have some in between:
 	- Smoke: basic functionalities work, usually very few and quick to complete. Can be executed regularly, maybe not in a PR-by_PR basis but nightly on builds deployed on QA.
-	- Regression: our full suite, with as many functional scenarios we can think off, and which may put the system under stress. Every test stage is important, but these will give us the most complete feedback of them all (usually they also take the longer to execute!) and will tell us if we can go to the next stage (QA -> STG -> PROD) or not.
+	- Regression: our full suite, with as many functional scenarios we can think off, and which may put the system under stress. Every test stage is important, but these will give us the most complete feedback of them all (usually they also take the longer to execute!) and will tell us if we can go to the next stage (QA -> STG -> PROD) or not. 
 	- [Optional] Sanity: some people use it as a middle level in the e2e, but for this example we are not considering it.
 
 #### Tests that are executed against production environments
