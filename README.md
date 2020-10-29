@@ -80,6 +80,7 @@ With that being said, based on the SDLC stages described, there are testing leve
 - Unit testing: these can be written by both the SWE and the SDET. These will be run against every PR that a person wants to merge to the "develop" (current release code) and "main" (production code) branches.
 - Integration testing: same as before, but instead their testing influence is broader. We still test against mocked data and not real containers with our services.
 - Contract testing: same as integration, will ensure services don't change their interfaces so that their interactions keep working as expected.
+- Code correctness testing: these are small checks you can implement in your repository and that you can also execute on a PR-by-PR basis. For instance, if you were making JS code, you would want to have static code analysis tools like JSLint integrated with your builds in jenkins, and have a hook to Git (or whatever SCM tool you are using) that disables merges until these checks pass, which also applies to every test type mentioned above.
 
 #### Tests that are executed against lower environments, like QA and STG
 - Stress testing: will give us an idea on how the limits of load limits the services we want to deploy can handle. This also applies to other types of non-functional testing (compliance, security..)
