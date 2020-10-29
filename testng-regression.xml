@@ -12,7 +12,7 @@
             <class name="com.ozamudio.regression.SpecialCharactersSearchTest"/>
             <class name="com.ozamudio.regression.OrderAndSortSearchTest"/>
             <class name="com.ozamudio.regression.RateLimitTest"/>
-<!--            <class name="com.ozamudio.regression.ResponseSchemaTest"/>-->
+            <class name="com.ozamudio.regression.ResponseSchemaTest"/>
         </classes>
     </test>
 </suite>
