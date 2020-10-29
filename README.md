@@ -1,6 +1,12 @@
 # git-search-repositories-api-test
 Repository for project on testing of Git's repository searches API
 
+**Table of Contents**
+
+- [Scenario](#scenario)
+  * [Scope of this project](#scope-of-this-project)
+- [Instructions on how to run](#instructions-on-how-to-run)
+
 
 # Scenario
 - We are Git testers and want to make sure quality of one of Git's API is up to the task. For this example, we are using https://api.github.com/search/repositories? .
@@ -22,15 +28,38 @@ Repository for project on testing of Git's repository searches API
 ## Scope of this project
 - Testing process strategy: :white_check_mark:
 - Automation of test cases on /search/repositories API for querying, sorting and ordering: :white_check_mark:
-- Automation of sample JSON Schema Validation with manual in-file recreation of a few properties the API has: :white_check_mark:
+- Automation of sample JSON Schema Validation with manual recreation of a few properties the API has: :white_check_mark:
 - Automation takes into consideration the API rate limiting: :white_check_mark:
 - Instructions on how to run it: :white_check_mark:
 - Custom user&repo data needed for some test cases: :white_check_mark:
 
 - CI implementation: :x:
   - While this would make it a more complete solution, and it's considered in the testing strategy for scaling and making sure we can run our tests anytime/anywhere, because of time constraints it will not be done for this example.
+  - At the same time, no test status visual reporting tools (e.g. Allure) are being used.
 - Implementation of backend logic for API request-response handling: :x:
   - For this rest-assured will be used. As it's a very popular tool it provides use with ease of usage and community support. There are no use cases that demand a custom solution.
 - Automation of performance testing: :x:
   - Although usually this would be included and it's in the strategy, it will not be implemented as would need a bit of time to become a real solution. Plus, Git already has rate-limiting in place.
+- Automation of security testing: :x:
+  - Implemented a couple tests using auth tokens for private repositories search, but not directly testing security.
   
+  
+# Instructions on how to run
+This repository is made of two levels of testing: smoke and regression, with smoke being a very small subset of the regression suite.
+This code was generated using:
+- JDK11
+- Maven 3.6.1
+
+In order to run the tests at a **smoke** level, you need to navigate to the project root folder and execute this via the command line:
+
+```mvn -Psmoke clean test```
+
+In order to run the tests at a **regression** level, you need to navigate to the project root folder and execute this via the command line:
+
+```mvn -Pregression clean test```
+
+In order to run a specific test class, you need to navigate to the project root folder and execute this via the command line:
+
+```mvn -Dtest=${testClassName} test```
+e.g.
+```mvn -Dtest=RateLimitTest test```
