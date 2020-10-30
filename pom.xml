@@ -6,7 +6,7 @@
 
     <groupId>git.api</groupId>
     <artifactId>search-repositories-test</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>Git API - Search repositories testing</name>
     <description>Project built as an exercise for testing of a git api (the repositories search in this case) based on Java, TestNG and RestAssured.</description>
